@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('whatsPup', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router', 'ui.bootstrap', 'firebase', ])
+angular.module('whatsPup', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router', 'ui.bootstrap', 'firebase' ])
 
 .constant('FIREBASE_URL', 'https://whatspup.firebaseio.com/')
 
@@ -44,7 +44,7 @@ angular.module('whatsPup', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
             url: '/newvisit/:user/:clientId',
             controller: 'NewVisitCtrl',
             controllerAs: 'newvisit'
-        })
+        });
     $urlRouterProvider.otherwise('/');
 })
 

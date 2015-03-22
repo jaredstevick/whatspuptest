@@ -4,28 +4,27 @@ angular.module('whatsPup')
         this.loggedIn = Auth.loggedIn;
 
         var clientVisit = new Firebase('https://whatspup.firebaseio.com/Clients/' + $stateParams.user + '/' + $stateParams.clientId);
-        console.log(clientVisit);
+
 
         this.visitObj = $firebaseObject(clientVisit);
 
 
 
         this.visitObj.$loaded().then(function (data) {
-            console.log(data.email);
             return self.getEmail = data.email;
-        })
-        console.log(self.getEmail);
-
-        console.log(this.sendEmail);
+        });
 
         this.image = '';
 
 
         document.getElementById("upload_widget_opener").addEventListener("click", function() {
-            cloudinary.openUploadWidget({ 
-                cloud_name: 'jaredstevick',
-                upload_preset: 'xnpszqid'
-            }, 
+            // debugger;
+            console.log("opened");
+            cloudinary.openUploadWidget(
+                { 
+                    cloud_name: 'jaredstevick',
+                    upload_preset: 'xnpszqid'
+                }, 
             function(error, result) { 
                 console.log(result[0].url)
                 self.image = result[0].url;
@@ -33,15 +32,14 @@ angular.module('whatsPup')
             });
 
         }, false);
-
         
-
 
 
         var currentdate = new Date();
-        var time = (currentdate.getMonth() + 1) + "/" + currentdate.getDate() + "/" + currentdate.getFullYear() + " at " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds(); //get time
+        var time = (currentdate.getMonth() + 1) + "/" + currentdate.getDate() + "/" + currentdate.getFullYear() + " at " + currentdate.getHours() + ":" + currentdate.getMinutes(); //get time
         
         this.sentEmail = function () {
+            console.log(this.image);
             $http({
                 method: "POST",
                 url: "https://mandrillapp.com/api/1.0/messages/send-template.json",
