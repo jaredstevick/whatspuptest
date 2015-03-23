@@ -18,7 +18,7 @@ angular.module('whatsPup')
 
 
         document.getElementById("upload_widget_opener").addEventListener("click", function() {
-            // debugger;
+            
             console.log("opened");
             cloudinary.openUploadWidget(
                 { 
